@@ -1,8 +1,9 @@
 import pandas as pd
 
+indices = [' ', "a", "b", "c", "d", "e", "f", "g", "h", 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+           'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
 # p = {}
-# indices = [' ', "a", "b", "c", "d", "e", "f", "g", "h", 'i', 'j', 'k', 'l', 'm', 'n', 'o',
-#            'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 # for i in indices:
 #     p[i] = [0]
 #
@@ -15,9 +16,6 @@ sums = df.sum()
 Nletters = sums[0]
 print(Nletters)
 df = df.transpose()
-
-indices = [' ', "a", "b", "c", "d", "e", "f", "g", "h", 'i', 'j', 'k', 'l', 'm', 'n', 'o',
-           'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 df1 = pd.read_csv("09_probability_1L.csv")
 
