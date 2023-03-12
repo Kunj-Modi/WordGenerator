@@ -1,28 +1,64 @@
 import pandas as pd
-from random import randint
+from random import random
 
-df = pd.read_csv("Update Data/05_probability_data.csv")
 
-text, pre, i, w = "", 0, 0, 5
+def selectLetter():
+    p = random()/2
+    for j in letters:
+        p -= df1[j][0]
+        if p < 0:
+            if j == " " or j is None:
+                return selectLetter()
+            return j
 
-indices = {0: ' ', 1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: "g", 8: "h", 9: 'i', 10: 'j', 11: 'k',
-           12: 'l', 13: 'm', 14: 'n', 15: 'o', 16: 'p', 17: 'q', 18: 'r', 19: 's', 20: 't', 21: 'u', 22: 'v',
-           23: 'w', 24: 'x', 25: 'y', 26: 'z'}
 
-while i < 10000:
-    k = randint(1, 100)
-    for j in indices:
-        k -= df[indices[j]][pre] * 100
-        if k < 0:
-            text += indices[j]
-            w -= 1
-            if text[-1] == " ":
-                w = randint(5, 10)
-            pre = j
-            break
-        if w <= 0:
-            text += " "
-            w = randint(8, 12)
-    i += 1
+def selectLength(letter):
+    p = random()
+    for j in range(27):
+        p -= df2[letter][j]
+        if p < 0:
+            return j
+    return 4
+
+
+def createWord(l, ls):
+    pp = 0
+    word = l
+    while pp < ls-1:
+        p = random()
+        for j in letters:
+            p -= df3[j][letters[l]]
+            if p < 0 and j != " ":
+                word += j
+                l = j
+                pp += 1
+                break
+    return word
+
+
+df1 = pd.read_csv("Update Data/09_probability_1L.csv")
+df2 = pd.read_csv("Update Data/13_word_length_probability.csv")
+df3 = pd.read_csv("Update Data/05_probability_data.csv")
+
+letters = {' ': 0, "a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 6, "g": 7, "h": 8, 'i': 9, 'j': 10, 'k': 11,
+           'l': 12, 'm': 13, 'n': 14, 'o': 15, 'p': 16, 'q': 17, 'r': 18, 's': 19, 't': 20, 'u': 21, 'v': 22,
+           'w': 23, 'x': 24, 'y': 25, 'z': 26}
+
+i, text, pre = 0, " ", ""
+
+num = int(input("Enter number of words: "))
+ln = int(input("Enter length of words(If want random length enter '0'): "))
+
+if ln == 0:
+    while i < num:
+        pre = selectLetter()
+        ln = selectLength(pre)
+        text += (createWord(pre, ln) + " ")
+        i += 1
+else:
+    while i < num:
+        pre = selectLetter()
+        text += (createWord(pre, ln) + " ")
+        i += 1
 
 print(text)
