@@ -1,4 +1,6 @@
-with open("01_data.txt") as data:
+file = "0.52_RealLifeData.txt"
+
+with open(file, errors="ignore") as data:
     list_of_text = data.read()
 
 list_of_text = list_of_text.lower()
@@ -13,5 +15,5 @@ for i in list_of_text:
     else:
         text += i
 
-with open("01_data.txt", mode="w") as data:
+with open(file, mode="w") as data:
     data.write(text)

@@ -14,7 +14,7 @@ file = "11_word_length_data.csv"
 # df = pd.DataFrame(p, columns=columns_)
 # df.to_csv(file, index=False)
 
-with open("01_data.txt") as text:
+with open("0.52_RealLifeData.txt") as text:
     data = text.read()
 
 df = pd.read_csv(file)

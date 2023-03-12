@@ -1,6 +1,9 @@
 import pandas as pd
 
-df = pd.read_csv("03_data.csv")
+file = "03.1_data.csv"
+prob_file = "05.1_probability_data.csv"
+
+df = pd.read_csv(file)
 df = df.transpose()
 sums = df.sum()
 print(sums)
@@ -17,11 +20,11 @@ indices = [' ', "a", "b", "c", "d", "e", "f", "g", "h", 'i', 'j', 'k', 'l', 'm',
 # columns_ = [' ', "a", "b", "c", "d", "e", "f", "g", "h", 'i', 'j', 'k', 'l', 'm', 'n', 'o',
 #             'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 # df = pd.DataFrame(p, columns=columns_)
-# df.to_csv("05_probability_data.csv", index=False)
+# df.to_csv(prob_file, index=False)
 
-df1 = pd.read_csv("05_probability_data.csv")
+df1 = pd.read_csv(prob_file)
 for i in indices:
     for j in range(27):
         df1[i][j] = int(df[i][j]) / int(sums[j])
 
-df1.to_csv("05_probability_data.csv", index=False)
+df1.to_csv(prob_file, index=False)
